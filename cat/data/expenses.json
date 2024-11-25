@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "category": "Jedzenie",
+    "date": "2024-10-28",
+    "kwota": 123,
+    "title": "Pierwsza kwota",
+    "opis": "jakis opis"
+  },
+  {
+    "id": 2,
+    "category": "Jedzenie",
+    "date": "2024-10-29",
+    "kwota": 13,
+    "title": "Druga kwota",
+    "opis": "jakis opis"
+  },
+  {
+    "id": 3,
+    "category": "Transport",
+    "date": "2024-10-30",
+    "kwota": 1233,
+    "title": "Trzecia kwota",
+    "opis": "jakis opis"
+  },
+  {
+    "id": 4,
+    "category": "Transport",
+    "date": "2024-11-31",
+    "kwota": 23,
+    "title": "Czwarta kwota",
+    "opis": "jakis opis"
+  },
+  {
+    "id": 5,
+    "category": "Rozrywka",
+    "date": "2024-11-02",
+    "kwota": 123123,
+    "title": "Piota kwota",
+    "opis": "jakis opis"
+  }, {
+  "id": 6,
+  "category": "Rachunki",
+  "date": "2023-11-28",
+  "kwota": 12663,
+  "title": "Szosta kwota",
+  "opis": "jakis opis"
+},
+  {
+    "id": 7,
+    "category": "Jedzenie",
+    "date": "2022-09-28",
+    "kwota": 666123,
+    "title": "Siodma kwota",
+    "opis": "jakis opis"
+  }
+]
