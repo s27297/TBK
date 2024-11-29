@@ -1,6 +1,11 @@
 const express=require("express" )
 
 let expenses = require("../data/expenses.json");
+const validation=require("../validation/validation")
+const validator=require("../validation/validator")
+const {postValidation} = require("../validation/validation");
+const {validationResult}=require('express-validator')
+
 const router=express.Router()
 
 /**
@@ -82,48 +87,66 @@ router.get("/:id",(req,res)=>{
    // console.log(id)
     const wydatek=expenses.filter(wydatek=>wydatek.id==id)
     if(wydatek.length>0)
-        res.send(wydatek)
+        res.send({message:wydatek,timestamp:new Date()})
     res.status(404).send("Nie znalazone wydatku")
 })
 
 
-router.post("/",(req,res)=>{
+router.post("/",validator.postAndPutValidation,(req,res,next)=>{
     const wydatek=req.body
-   if(!wydatek.category||!wydatek.date||!wydatek.kwota||!wydatek.opis||!wydatek.title)
-       res.status(404).json({message:"Wydatek nie moze miec puste pola",wydatek:wydatek})
-    else {
-       wydatek.id = expenses.length ? expenses.length + 1 : 1
-       expenses.push(wydatek)
-       res.status(201).json({message: "Wydatek added", wydatek: wydatek})
-   }
+   const errors=validationResult(req)
+    if (errors.isEmpty()) {
+// Jeśli parametry żądania spełniają kryteria walidacji console.log('Rejestracja użytkownika zakończona');
+        wydatek.id = expenses.length ? expenses.length + 1 : 1
+        expenses.push(wydatek)
+        res.status(201).json({message: "Wydatek added", wydatek: wydatek,timestamp:new Date()})
+
+    } else {
+        res.status(400).json({
+            errors: errors.array()
+        });
+    }
+
 })
 
 
-router.put("/:id",(req,res)=>{
+router.put("/:id",validator.postAndPutValidation,(req,res)=>{
     const id=parseInt(req.params.id)
 
     const wydatek=req.body
     const index=expenses.findIndex(e=>e.id===id)
     if(index===-1)  res.status(404).json({message:"Wydatek nie znalazony",wydatek:wydatek})
-    else if(!wydatek.category||!wydatek.date||!wydatek.kwota||!wydatek.opis||!wydatek.title)
-        res.status(404).json({message:"Wydatek nie moze miec puste pola",wydatek:wydatek})
-    else {
+    const errors=validationResult(req)
+
+    if (errors.isEmpty()) {
         wydatek.id=index
        expenses[index]=wydatek
-        res.status(201).json({message: "Wydatek updated", wydatek: wydatek})
+        res.status(201).json({message: "Wydatek updated", wydatek: wydatek,timestamp:new Date()})
+    }else {
+        res.status(400).json({
+            errors: errors.array()
+        });
     }
 })
 
-router.patch("/:id",(req,res)=>{
+router.patch("/:id",validator.patchValidation,(req,res)=>{
     const id=parseInt(req.params.id)
-
+    console.log(req.body)
     const wydatek=req.body
     const staryWydatek=expenses.find(e=>e.id===id)
-    if(!staryWydatek)  res.status(404).json({message:"Wydatek nie znalazony",wydatek:wydatek})
-    else {
+    if(!staryWydatek)  res.status(404).json({message:"Wydatek nie znalazony",wydatek:wydatek,timestamp:new Date()})
+
+    const errors=validationResult(req)
+
+    if (errors.isEmpty()) {
        Object.assign(staryWydatek,wydatek)
 
-        res.status(201).json({message: "Wydatek patched", wydatek: staryWydatek})
+
+        res.status(201).json({message: "Wydatek patched", wydatek: staryWydatek,timestamp:new Date()})
+    }else {
+        res.status(400).json({
+            errors: errors.array()
+        });
     }
 })
 

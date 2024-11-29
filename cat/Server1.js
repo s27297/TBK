@@ -5,24 +5,35 @@ const expensesRouter=require("./routers/expensesRouter")
 const cors=require("cors")
 const YAML=require("yamljs")
 const swaggerUI=require("swagger-ui-express")
-
+const bodyParser=require("body-parser")
 app.use(cors({
-    origin: 'http://localhost:63342'
+    origin: '*',
+    allowedHeaders: ['Content-Type']
 }))
 
 
 app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+
+
 
 app.use((req,res,next)=>{
-    console.log("URL "+req.originalUrl)
-    console.log("Method HTTP: "+req.method)
+    // req.body.map(wartosc=>{if(wartosc.isString()) wartosc.toLowerCase()})
+  Object.keys(req.body).map(key=>{
+    if(typeof req.body[key]==="string")req.body[key]=req.body[key].toLowerCase()});
+    console.log(req.body);
+    //foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties())
+    console.log("URL "+req.originalUrl);
+    console.log("Method HTTP: "+req.method);
     console.log("Log daty: "+ new Date().toISOString());
     next()
 })
 app.use('/expenses',expensesRouter)
 
  // const swaggerDocument=.load('./swagger.json')
- app.use('/api-docs',swaggerUI.serve,swaggerUI.setup('./swagger.json'))
+// app.use('/api-docs',swaggerUI.serve,swaggerUI.setup('./swagger.json'))
 
 // app.use("/admin",(req,res,next)=>{
 //    if(!req.query.Autorization||req.query.Autorization!=="cat")
