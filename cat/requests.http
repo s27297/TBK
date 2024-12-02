@@ -13,9 +13,9 @@ Content-Type: application/json
 {
     "category": "Jedzenie",
     "date": "2022-09-28",
-    "kwota": 66.5,
-    "title": "Sih"
-
+    "kwota": 66,
+    "title": "Sio kwota",
+    "opis": "jas opis"
 }
 
 
@@ -53,7 +53,7 @@ Content-Type: application/json
 
 
   "kwota": 66,
-
+  "title": "    ",
   "opis": "jas opis"
 }
 
@@ -61,5 +61,8 @@ Content-Type: application/json
 DELETE http://localhost:5000/expenses/3
 ####
 DELETE http://localhost:5000/expenses/4
+####
+POST http://localhost:5000/1
+
 
 

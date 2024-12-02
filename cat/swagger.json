@@ -32,21 +32,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "category": {
-                  "example": "any"
-                },
-                "date": {
-                  "example": "any"
-                },
-                "kwota": {
-                  "example": "any"
-                },
-                "opis": {
-                  "example": "any"
-                },
-                "title": {
-                  "example": "any"
-                },
                 "id": {
                   "example": "any"
                 }
@@ -58,8 +43,8 @@
           "201": {
             "description": "Created"
           },
-          "404": {
-            "description": "Not Found"
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
@@ -80,16 +65,6 @@
           },
           "401": {
             "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/*": {
-      "get": {
-        "description": "",
-        "responses": {
-          "404": {
-            "description": "Not Found"
           }
         }
       }
@@ -115,21 +90,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "category": {
-                  "example": "any"
-                },
-                "date": {
-                  "example": "any"
-                },
-                "kwota": {
-                  "example": "any"
-                },
-                "opis": {
-                  "example": "any"
-                },
-                "title": {
-                  "example": "any"
-                },
                 "id": {
                   "example": "any"
                 }
@@ -141,8 +101,8 @@
           "201": {
             "description": "Created"
           },
-          "404": {
-            "description": "Not Found"
+          "400": {
+            "description": "Bad Request"
           }
         }
       }
@@ -217,21 +177,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "category": {
-                  "example": "any"
-                },
-                "date": {
-                  "example": "any"
-                },
-                "kwota": {
-                  "example": "any"
-                },
-                "opis": {
-                  "example": "any"
-                },
-                "title": {
-                  "example": "any"
-                },
                 "id": {
                   "example": "any"
                 }
@@ -242,6 +187,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
@@ -261,6 +209,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
@@ -357,21 +308,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "category": {
-                  "example": "any"
-                },
-                "date": {
-                  "example": "any"
-                },
-                "kwota": {
-                  "example": "any"
-                },
-                "opis": {
-                  "example": "any"
-                },
-                "title": {
-                  "example": "any"
-                },
                 "id": {
                   "example": "any"
                 }
@@ -382,6 +318,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
@@ -401,6 +340,9 @@
         "responses": {
           "201": {
             "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"

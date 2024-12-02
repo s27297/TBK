@@ -6,6 +6,7 @@ const cors=require("cors")
 const YAML=require("yamljs")
 const swaggerUI=require("swagger-ui-express")
 const bodyParser=require("body-parser")
+const swaggerJSON=require("./swagger.json")
 app.use(cors({
     origin: '*',
     allowedHeaders: ['Content-Type']
@@ -21,8 +22,8 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 app.use((req,res,next)=>{
     // req.body.map(wartosc=>{if(wartosc.isString()) wartosc.toLowerCase()})
-  Object.keys(req.body).map(key=>{
-    if(typeof req.body[key]==="string")req.body[key]=req.body[key].toLowerCase()});
+    Object.keys(req.body).map(key=>{
+        if(typeof req.body[key]==="string")req.body[key]=req.body[key].toLowerCase()});
     console.log(req.body);
     //foreach (PropertyInfo propertyInfo in obj.GetType().GetProperties())
     console.log("URL "+req.originalUrl);
@@ -32,8 +33,8 @@ app.use((req,res,next)=>{
 })
 app.use('/expenses',expensesRouter)
 
- // const swaggerDocument=.load('./swagger.json')
-// app.use('/api-docs',swaggerUI.serve,swaggerUI.setup('./swagger.json'))
+
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerJSON))
 
 // app.use("/admin",(req,res,next)=>{
 //    if(!req.query.Autorization||req.query.Autorization!=="cat")
@@ -65,7 +66,7 @@ app.get("/admin",(req,res)=>{
 
 app.use(express.static('public/'))
 
-app.get("/*",(req,res)=> {
+app.use("*",(req,res)=> {
     res.status(404).send("Nie znalezono zasobu")
 })
 
